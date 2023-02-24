@@ -84,21 +84,32 @@ export default function RegisterComponent({ signin, signout }) {
 
         <div className="flex items-center mt-8">
             <div className="mx-auto bg-gray-100 p-8 rounded-lg max-w-screen-md">
-                <p className="text-center text-red-800">
-                    * 교육기간: 2023/05/02 - 2023/12/15 *
-                </p>
-                <p className="text-center text-red-800">
-                    * 특성화고 신청기간: 2023/03/13 - 2023/03/17 *
-                </p>
-                <p className="text-center text-red-800">
-                    * 일반학교 신청기간: 2023/03/15 - 2023/03/17 *
+                <p className="text-center text-gray-800">
+                    「2023학년도 학교로 찾아가는 노동인권교육」 신청 안내
                 </p>
                 <br/>
                 <p className="text-left text-gray-800">
-                    - 원하는 날짜를 검색합니다.
+                    가. 교육기간: 20232.5.2.(월) ~ 2022.12.15.(금)
+                </p>
+                <br/>
+                <p className="text-left text-gray-800">
+                    나. 신청기간
                 </p>
                 <p className="text-left text-gray-800">
-                    - 검색 결과를 확인 후 밑 신청서에 옳바른 값을 넣어 신청합니다.
+                    1) 학생
+                </p>
+                <p className="text-left text-gray-800">
+                    -특성화고, 산업수요맞춤형고: 3.20(월)~3.24(금)
+                </p>
+                <p className="text-left text-gray-800">
+                    -초·중·일반고·특수: 3.22(수)~3.24(금)
+                </p>
+                <p className="text-left text-gray-800">
+                    ※ 참고: 3.20~3.21, 2일간은 직업계고만 신청가능함.
+                </p>
+                <br/>
+                <p className="text-left text-gray-800">
+                    2) 학부모/교원: 3.20(월)~3.24(금)
                 </p>
             </div>
         </div>
