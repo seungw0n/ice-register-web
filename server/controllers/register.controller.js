@@ -25,9 +25,9 @@ const registerStudent = (async (req, res) => {
     try {
         console.log("/api/register/student:")
 
-        // if (!req.session.schoolName) {
-        //     return res.status(400).json({message: "세션이 만료되었습니다."});
-        // }
+        if (!req.session.schoolName) {
+            return res.status(400).json({message: "세션이 만료되었습니다."});
+        }
         const userRequest = {
             schoolName: req.session.schoolName,
             numStudentSlotNeed: req.body.numStudentSlotNeed,
@@ -72,9 +72,10 @@ const registerStudent = (async (req, res) => {
 const registerAdult = ( async(req, res) => {
     try {
         console.log("/api/register/adult:")
-        // if (!req.session.schoolName) {
-        //     return res.status(400).json({message: "세션이 만료되었습니다."});
-        // }
+        
+        if (!req.session.schoolName) {
+            return res.status(400).json({message: "세션이 만료되었습니다."});
+        }
 
         const userRequest = {
             schoolName: req.session.schoolName,

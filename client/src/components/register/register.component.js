@@ -24,7 +24,7 @@ export default function RegisterComponent({ signin, signout }) {
                     signin(userDataJson)
                 }
             } catch (error) {
-                alert(error.response.data.message);
+                alert("세션이 완료되었습니다. 다시 로그인해주세요.")
                 signout();
                 navigate("/");
             }
@@ -68,6 +68,7 @@ export default function RegisterComponent({ signin, signout }) {
         })
         .catch((err) => {
             alert(err.response.data.message);
+            window.location.reload(false);
         })
     }
 
@@ -84,32 +85,36 @@ export default function RegisterComponent({ signin, signout }) {
 
         <div className="flex items-center mt-8">
             <div className="mx-auto bg-gray-100 p-8 rounded-lg max-w-screen-md">
-                <p className="text-center text-gray-800">
+                <p className="text-center text-gray-800 font-serif">
                     「2023학년도 학교로 찾아가는 노동인권교육」 신청 안내
                 </p>
                 <br/>
-                <p className="text-left text-gray-800">
+                <p className="text-left text-gray-800 font-serif">
                     가. 교육기간: 20232.5.2.(월) ~ 2022.12.15.(금)
                 </p>
                 <br/>
-                <p className="text-left text-gray-800">
+                <p className="text-left text-gray-800 font-serif">
                     나. 신청기간
                 </p>
-                <p className="text-left text-gray-800">
+                <p className="text-left text-gray-800 font-serif">
                     1) 학생
                 </p>
-                <p className="text-left text-gray-800">
+                <p className="text-left text-gray-800 font-serif">
                     -특성화고, 산업수요맞춤형고: 3.20(월)~3.24(금)
                 </p>
-                <p className="text-left text-gray-800">
+                <p className="text-left text-gray-800 font-serif">
                     -초·중·일반고·특수: 3.22(수)~3.24(금)
                 </p>
-                <p className="text-left text-gray-800">
+                <p className="text-left text-gray-800 font-serif">
                     ※ 참고: 3.20~3.21, 2일간은 직업계고만 신청가능함.
                 </p>
                 <br/>
-                <p className="text-left text-gray-800">
+                <p className="text-left text-gray-800 font-serif">
                     2) 학부모/교원: 3.20(월)~3.24(금)
+                </p>
+                <br/>
+                <p className="text-left text-gray-800 font-serif font-bold">
+                    희망 날짜 검색 후 보이는 '잔여학급 수' 만큼 신청가능합니다.
                 </p>
             </div>
         </div>
@@ -117,7 +122,7 @@ export default function RegisterComponent({ signin, signout }) {
         <div className="flex items-center mt-5">
             <hr className="w-full border-t border-gray-300 mr-4" />
             <span className="text-gray-500 font-semibold flex whitespace-nowrap">
-                날짜 검색
+                희망 날짜 검색
             </span>
             <hr className="w-full border-t border-gray-300 ml-4" />
         </div>

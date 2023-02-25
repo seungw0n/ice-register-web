@@ -49,6 +49,7 @@ export default function AdultRegisterComponent({ date, isSearch }) {
                 })
                 .catch((error) => {
                     alert(error.response.data.message);
+                    window.location.reload(false);
                 })
             }
         }
@@ -66,8 +67,8 @@ export default function AdultRegisterComponent({ date, isSearch }) {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-10">
             <div className=" p-4 rounded-lg md:ml-20 border border-black">
-                <label class="flex">
-                    <span class="text-black text-lg mt-4">교원/학부모</span>
+                <label className="flex">
+                    <span className="text-black text-lg mt-4">교원/학부모</span>
                     <div className="relative mt-4 ml-6">
                         <select
                             className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
@@ -88,8 +89,8 @@ export default function AdultRegisterComponent({ date, isSearch }) {
                         </div>
                     </div>
                 </label>
-                <label class="flex">
-                    <span class="text-black text-lg mt-4">교시</span>
+                <label className="flex">
+                    <span className="text-black text-lg mt-4">교시</span>
                     <div className="relative mt-4 ml-6">
                         <select
                             className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
@@ -119,12 +120,12 @@ export default function AdultRegisterComponent({ date, isSearch }) {
             </div>
 
             <div className=" p-4 rounded-lg md:mr-20 border border-black">
-                <label class="flex">
-                    <span class="text-black text-lg mt-4">
+                <label className="flex">
+                    <span className="text-black text-lg mt-4">
                         신청 인원 수
                     </span>
                     <input
-                        class="p-2 mt-2 rounded-xl border md:w-48  w-36 ml-6"
+                        className="p-2 mt-2 rounded-xl border md:w-48  w-36 ml-6"
                         type="number"
                         name="numTotalPeople"
                         onChange={handleChange}
@@ -133,10 +134,10 @@ export default function AdultRegisterComponent({ date, isSearch }) {
                     />
                 </label>
 
-                <label class="flex">
-                    <span class="text-black text-lg mt-4">시작 시간</span>
+                <label className="flex">
+                    <span className="text-black text-lg mt-4">시작 시간</span>
                     <input
-                        class="p-2 mt-2 rounded-xl border md:w-48  w-36 ml-6"
+                        className="p-2 mt-2 rounded-xl border md:w-48  w-36 ml-6"
                         type="time"
                         name="startTime"
                         onChange={handleChange}
@@ -145,10 +146,10 @@ export default function AdultRegisterComponent({ date, isSearch }) {
                     />
                 </label>
 
-                <label class="flex">
-                    <span class="text-black text-lg mt-4">종료 시간</span>
+                <label className="flex">
+                    <span className="text-black text-lg mt-4">종료 시간</span>
                     <input
-                        class="p-2 mt-2 rounded-xl border md:w-48  w-36 ml-6"
+                        className="p-2 mt-2 rounded-xl border md:w-48  w-36 ml-6"
                         type="time"
                         name="endTime"
                         onChange={handleChange}

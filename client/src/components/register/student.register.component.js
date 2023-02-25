@@ -58,6 +58,7 @@ export default function StudentRegisterComponent({ date, isSearch }) {
                 })
                 .catch((error) => {
                     alert(error.response.data.message);
+                    window.location.reload(false);
                 })
             }
         }
