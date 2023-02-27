@@ -90,7 +90,7 @@ export default function RegisterComponent({ signin, signout }) {
                 </p>
                 <br/>
                 <p className="text-left text-gray-800 font-serif">
-                    가. 교육기간: 20232.5.2.(월) ~ 2022.12.15.(금)
+                    가. 교육기간: 2023.5.2.(월) ~ 2022.12.15.(금)
                 </p>
                 <br/>
                 <p className="text-left text-gray-800 font-serif">
@@ -100,13 +100,13 @@ export default function RegisterComponent({ signin, signout }) {
                     1) 학생
                 </p>
                 <p className="text-left text-gray-800 font-serif">
-                    -특성화고, 산업수요맞춤형고: 3.20(월)~3.24(금)
+                    -특성화고, 산업수요맞춤형고: 3.27(월)~3.31(금)
                 </p>
                 <p className="text-left text-gray-800 font-serif">
-                    -초·중·일반고·특수: 3.22(수)~3.24(금)
+                    -초·중·일반고·특수: 3.29(수)~3.31(금)
                 </p>
                 <p className="text-left text-gray-800 font-serif">
-                    ※ 참고: 3.20~3.21, 2일간은 직업계고만 신청가능함.
+                    ※ 참고: 3.27~3.28, 2일간은 직업계고만 신청가능함.
                 </p>
                 <br/>
                 <p className="text-left text-gray-800 font-serif">

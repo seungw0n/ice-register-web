@@ -28,6 +28,7 @@ export default function SignupComponent () {
         const { name, value } = event.target;
         const regexOnlyNumber = /^[0-9\b]+$/;
         const regexOnlyString = /^[ㄱ-ㅎ|가-힣|A-Z|a-z\b]+$/;
+        const regexOnlyKorean = /^[ㄱ-ㅎ|가-힣\b]+$/;
 
         setFormValue((prevState) => {
             if (name === "firstNumber" || name === "secondNumber") {
@@ -44,7 +45,7 @@ export default function SignupComponent () {
                 }
             }
             else if (name === "schoolName" || name === "managerName") {
-                if (value === '' || regexOnlyString.test(value)) {
+                if (value === '' || regexOnlyKorean.test(value)) {
                     return {
                         ...prevState,
                         [name]: value
