@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import logo from "../logo.png";
+import logo2 from "../logo4.png";
 
 export default function NavbarComponent( {signout} ) {
     const userData = sessionStorage.getItem("user");
@@ -39,10 +40,11 @@ export default function NavbarComponent( {signout} ) {
             <nav className="bg-white border-gray-200">
                 <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl px-4 md:px-6 py-2.5">
                     <a href="/" className="flex items-center">
-                        <img src={logo} className="h-6 mr-3 sm:h-9" alt="ice logo" />
-                        <span className="self-container text-xl font-semibold whitespace-nowrap dark:text-gray">
+                        <img src={logo} className="h-4 mr-3 sm:h-12" alt="ice logo" />
+                        <img src={logo2} className="mr-3 w-40 sm:h-12" alt="nodong logo" />
+                        {/* <span className="self-container text-xl font-semibold whitespace-nowrap dark:text-gray">
                             학교로 찾아가는 노동인권교육
-                        </span>
+                        </span> */}
                     </a>
                 </div>
             </nav>

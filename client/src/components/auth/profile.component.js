@@ -26,7 +26,7 @@ export default function ProfileComponent ({ signin, signout }) {
                     setReservations(response.data.data);
                 }
             } catch (error) {
-                // alert(error.response.data.message);
+                alert("세션이 완료되었습니다. 다시 로그인해주세요.")
                 signout();
                 navigate("/");
             }
