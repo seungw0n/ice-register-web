@@ -110,7 +110,7 @@ export default function RegisterComponent({ signin, signout }) {
                 </p>
                 <br/>
                 <p className="text-left text-gray-800 font-serif">
-                    2) 학부모/교원: 3.20(월)~3.24(금)
+                    2) 학부모/교원: 3.27(월)~3.31(금)
                 </p>
                 <br/>
                 <p className="text-left text-gray-800 font-serif font-bold">
