@@ -1,6 +1,8 @@
-const User = require("../schemas/user.schema");
-const Reservation = require("../schemas/reservation.schema");
-const Date = require("../schemas/date.schema");
+const Users = require("../schemas/user.schema");
+const Schools = require("../schemas/school.schema");
+const Reservations = require("../schemas/reservation.schema");
+const Dates = require("../schemas/date.schema");
+const moment = require("moment")
 
 const searchDate = (async (req, res) => {
     try {
@@ -8,7 +10,7 @@ const searchDate = (async (req, res) => {
 
         console.log("/api/register/searchDate: ");
         
-        const found = await Date.findOne({date: date}).exec();
+        const found = await Dates.findOne({date: date}).exec();
 
         if (!found) {
             return res.status(400).json({data: null, message: "옳바르지 않은 날짜 입니다."});
@@ -28,8 +30,25 @@ const registerStudent = (async (req, res) => {
         if (!req.session.schoolName) {
             return res.status(400).json({message: "세션이 만료되었습니다."});
         }
+
+        const schoolName = req.session.schoolName;
+        
+        const today = moment().format('L');
+
+        if (today === '03/27/2023') { 
+            // need to check a valid priority
+            const foundSchool = await Schools.findOne({
+                priority: true,
+                schools: schoolName
+            }).exec();
+
+            if (!foundSchool) {
+                return res.status(400).json({message: "3월 27일은 특성화고, 산업수요맞춤형고만 신청 가능합니다."})
+            }
+        }
+
         const userRequest = {
-            schoolName: req.session.schoolName,
+            schoolName: schoolName,
             numStudentSlotNeed: req.body.numStudentSlotNeed,
             numAdultSlotNeed: 0,
             numTotalPeople: req.body.numTotalPeople,
@@ -43,14 +62,14 @@ const registerStudent = (async (req, res) => {
         };
 
         // if no exists return empty array
-        const foundReservation = await Reservation.find({schoolName: userRequest.schoolName, grade: userRequest.grade}).exec();
+        const foundReservation = await Reservations.find({schoolName: userRequest.schoolName, grade: userRequest.grade}).exec();
         
         if (foundReservation.length > 0) {
             return res.status(400).json({message: "신청 실패: 이미 신청 된 학년입니다."});
         }
 
         // if no exists return null
-        Date.findOne({date: userRequest.date}, async function(err, foundDate) {
+        Dates.findOne({date: userRequest.date}, async function(err, foundDate) {
             if (!foundDate) {
                 return res.status(400).json({message: "신청 실패: 옳바른 날짜가 아닙니다."}); 
             }
@@ -61,7 +80,7 @@ const registerStudent = (async (req, res) => {
             foundDate.numStudentSlotLeft -= userRequest.numStudentSlotNeed;
             foundDate.save();
 
-            await Reservation.create(userRequest);
+            await Reservations.create(userRequest);
             return res.status(202).json({ message: "ok" });
         })
     } catch (error) {
@@ -91,7 +110,7 @@ const registerAdult = ( async(req, res) => {
             endTime: req.body.endTime
         };
 
-        const foundReservation = await Reservation.find({
+        const foundReservation = await Reservations.find({
                 schoolName: userRequest.schoolName, grade: userRequest.grade
             }).exec();
         
@@ -103,7 +122,7 @@ const registerAdult = ( async(req, res) => {
             }
         }
 
-        Date.findOne({date: userRequest.date}, async function(err, foundDate) {
+        Dates.findOne({date: userRequest.date}, async function(err, foundDate) {
             if (!foundDate) {
                 return res.status(400).json({message: "신청 실패: 옳바른 날짜가 아닙니다."}); 
             }
@@ -114,7 +133,7 @@ const registerAdult = ( async(req, res) => {
             foundDate.numAdultSlotLeft = 0;
             foundDate.save();
 
-            await Reservation.create(userRequest);
+            await Reservations.create(userRequest);
             return res.status(202).json({ message: "ok" });
         });
         

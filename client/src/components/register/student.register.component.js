@@ -8,7 +8,7 @@ export default function StudentRegisterComponent({ date, isSearch }) {
         numTotalPeople: "",
         numMale: "0",
         numFemale: "0",
-        grade: "초등 5학년", // 학년 can be selected 5, 6, 1, 2, 3
+        grade: "초 5학년", // 학년 can be selected 5, 6, 1, 2, 3
         period: "1-2", // 교시
         startTime: "",
         endTime: ""
