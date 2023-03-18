@@ -4,7 +4,7 @@ import axios from "axios";
 export default function AdultRegisterComponent({ date, isSearch }) {
     const [ formValue, setFormValue ] = useState({
         grade: "교원",
-        period: "1-2",
+        period: "1: 노동법의 배경과 구조",
         numTotalPeople: "",
         startTime: "",
         endTime: ""
@@ -90,21 +90,22 @@ export default function AdultRegisterComponent({ date, isSearch }) {
                     </div>
                 </label>
                 <label className="flex">
-                    <span className="text-black text-lg mt-4">교시</span>
+                    <span className="text-black text-lg mt-4">주제</span>
                     <div className="relative mt-4 ml-6">
                         <select
                             className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
                             name="period"
                             onChange={handleChange}
                         >
-                            <option>1-2</option>
-                            <option>2-3</option>
-                            <option>3-4</option>
-                            <option>4-5</option>
-                            <option>5-6</option>
-                            <option>6-7</option>
-                            <option>7-8</option>
-                            <option>8-9</option>
+                            <option>1: 노동법의 배경과 구조</option>
+                            <option>2: 임금 및 노동시간</option>
+                            <option>3: 청소년도 특수고용?</option>
+                            <option>4: 아프니까 산재</option>
+                            <option>5: 막말과 하대는 직장 내 괴롭힘</option>
+                            <option>6: 제대로 퇴사하기</option>
+                            <option>7: 법대로 하기</option>
+                            <option>8: 청소년 노동의 이슈들</option>
+                            <option>9: 노동인권관련 우리 사회 이슈</option>
                         </select>
                         <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                             <svg

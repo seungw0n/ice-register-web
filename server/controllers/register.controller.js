@@ -9,6 +9,19 @@ const searchDate = (async (req, res) => {
         const date = req.body.date;
 
         console.log("/api/register/searchDate: ");
+
+
+        const todayDate = Date.parse(moment().format('L'));
+        const targetDate = Date.parse("03/26/2023");
+        // const testDate = Date.parse("3/27/2023");
+        // console.log(todayDate);
+        // console.log(targetDate);
+        // console.log(testDate);
+
+        if (todayDate <= targetDate) {
+            return res.status(400).json({data: null, message: "신청기간이 아닙니다.\n신청기간: 3.27.(월) - 3.31.(금)\n3.27.(월)은 직업계고만 신청가능"})
+        }
+        
         
         const found = await Dates.findOne({date: date}).exec();
 
