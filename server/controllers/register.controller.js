@@ -9,24 +9,20 @@ const searchDate = (async (req, res) => {
         const date = req.body.date;
 
         console.log("/api/register/searchDate: ");
-
-
-        const todayDate = Date.parse(moment().format('L'));
-        const targetDate = Date.parse("03/26/2023");
-        // const testDate = Date.parse("3/27/2023");
-        // console.log(todayDate);
-        // console.log(targetDate);
-        // console.log(testDate);
-
-        if (todayDate <= targetDate) {
-            return res.status(400).json({data: null, message: "신청기간이 아닙니다.\n신청기간: 3.27.(월) - 3.31.(금)\n3.27.(월)은 직업계고만 신청가능"})
-        }
         
-        
+        const today = moment().format('L') + " " + moment().format("LTS")
+        const todayDate = Date.parse(today);
+        const priorityTargetDate = Date.parse("03/27/2023 08:59:59 AM");
+        // const priorityTargetDate = Date.parse("03/20/2023 08:59:59 AM"); 
+
+        if (todayDate <= priorityTargetDate) {
+            return res.status(400).json({data: null, message: "신청기간이 아닙니다.\n신청기간: 3.27.(월) 09:00 - 3.31.(금) 17:00\n초·중·일반고·특수: 3.28.(화) 09:00 부터 가능"})
+        } 
+
         const found = await Dates.findOne({date: date}).exec();
 
         if (!found) {
-            return res.status(400).json({data: null, message: "옳바르지 않은 날짜 입니다."});
+            return res.status(400).json({data: null, message: "올바르지 않은 날짜 입니다."});
         } else {
             return res.status(202).json({data: found, message: "ok"});
         }
@@ -46,19 +42,21 @@ const registerStudent = (async (req, res) => {
 
         const schoolName = req.session.schoolName;
         
-        const today = moment().format('L');
+        const today = moment().format('L') + " " + moment().format("LTS")
+        const todayDate = Date.parse(today);
+        const normalTargetDate = Date.parse("03/28/2023 08:59:59 AM");
 
-        if (today === '03/27/2023') { 
-            // need to check a valid priority
+
+        if (todayDate <= normalTargetDate) {
             const foundSchool = await Schools.findOne({
                 priority: true,
                 schools: schoolName
             }).exec();
 
             if (!foundSchool) {
-                return res.status(400).json({message: "3월 27일은 특성화고, 산업수요맞춤형고만 신청 가능합니다."})
+                return res.status(400).json({data: null, message: "신청기간이 아닙니다.\n신청기간: 3.27.(월) 09:00 - 3.31.(금) 17:00\n초·중·일반고·특수: 3.28.(화) 09:00 부터 가능"})
             }
-        }
+        } 
 
         const userRequest = {
             schoolName: schoolName,
@@ -84,7 +82,7 @@ const registerStudent = (async (req, res) => {
         // if no exists return null
         Dates.findOne({date: userRequest.date}, async function(err, foundDate) {
             if (!foundDate) {
-                return res.status(400).json({message: "신청 실패: 옳바른 날짜가 아닙니다."}); 
+                return res.status(400).json({message: "신청 실패: 올바른 날짜가 아닙니다."}); 
             }
             if (foundDate.numStudentSlotLeft < userRequest.numStudentSlotNeed) {
                 return res.status(400).json({message: "신청 실패: 요청 날짜의 자리가 충분하지 않습니다.\n날짜를 다시 검색해주세요."});
@@ -137,7 +135,7 @@ const registerAdult = ( async(req, res) => {
 
         Dates.findOne({date: userRequest.date}, async function(err, foundDate) {
             if (!foundDate) {
-                return res.status(400).json({message: "신청 실패: 옳바른 날짜가 아닙니다."}); 
+                return res.status(400).json({message: "신청 실패: 올바른 날짜가 아닙니다."}); 
             }
             if (foundDate.numAdultSlotLeft === 0) {
                 return res.status(400).json({message: "신청 실패: 요청 날짜의 자리가 충분하지 않습니다.\n날짜를 다시 검색해주세요."});
