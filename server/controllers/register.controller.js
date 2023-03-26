@@ -10,14 +10,17 @@ const searchDate = (async (req, res) => {
 
         console.log("/api/register/searchDate: ");
         
-        const today = moment().format('L') + " " + moment().format("LTS")
-        const todayDate = Date.parse(today);
-        const priorityTargetDate = Date.parse("03/27/2023 08:59:59 AM");
-        // const priorityTargetDate = Date.parse("03/20/2023 08:59:59 AM"); 
+        // const today = moment().format('L') + " " + moment().format("LTS")
+        // const todayDate = Date.parse(today);
+        // const priorityTargetDate = Date.parse("03/27/2023 08:59:59 AM");
+        // // const priorityTargetDate = Date.parse("03/20/2023 08:59:59 AM"); 
 
-        if (todayDate <= priorityTargetDate) {
-            return res.status(400).json({data: null, message: "신청기간이 아닙니다.\n신청기간: 3.27.(월) 09:00 - 3.31.(금) 17:00\n초·중·일반고·특수: 3.28.(화) 09:00 부터 가능"})
-        } 
+        // console.log("오늘: " + todayDate)
+        // console.log("타겟 날짜: " + priorityTargetDate)
+
+        // if (todayDate <= priorityTargetDate) {
+        //     return res.status(400).json({data: null, message: "신청기간이 아닙니다.\n신청기간: 3.27.(월) 09:00 - 3.31.(금) 17:00\n초·중·일반고·특수: 3.28.(화) 09:00 부터 가능"})
+        // } 
 
         const found = await Dates.findOne({date: date}).exec();
 
